@@ -27,7 +27,7 @@ Documentation = "https://github.com/pspeter/autohell#readme"
 Issues = "https://github.com/pspeter/autohell/issues"
 Source = "https://github.com/pspeter/autohell"
 
-[project.scripts]
+[project.gui-scripts]
 autohell = "autohell:main"
 
 [tool.hatch.version]
