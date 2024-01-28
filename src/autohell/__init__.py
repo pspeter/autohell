@@ -70,6 +70,7 @@ def main(args: Sequence[str] | None = None) -> None:  # noqa: ARG001
     args = args if args else sys.argv[1:]
     if args and ("-V" in args or "--version" in args):
         print(f"autohell {__version__}")
+        exit(0)
     elif args:
         print(f"autohell currently does not take any arguments")
         exit(1)
