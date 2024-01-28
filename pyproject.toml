@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "autohell"
+dynamic = ["version"]
+description = "Automatically controls your monitor's brightness"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Peter Schmidbauer", email = "peter@schmidbauer.at" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = ["screen-brightness-control"]
+
+[project.urls]
+Documentation = "https://github.com/pspeter/autohell#readme"
+Issues = "https://github.com/pspeter/autohell/issues"
+Source = "https://github.com/pspeter/autohell"
+
+[project.scripts]
+autohell = "autohell:main"
+
+[tool.hatch.version]
+path = "src/autohell/__about__.py"
+
+[tool.hatch.envs.default]
+dependencies = []
+
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = [
+  "- coverage combine",
+  "coverage report",
+]
+cov = [
+  "test-cov",
+  "cov-report",
+]
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.11", "3.12"]
+
+[tool.hatch.envs.types]
+dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/autohell}"
+
+[tool.ruff.lint]
+extend-ignore = ["T20"]
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.coverage.run]
+source_pkgs = ["autohell", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/autohell/__about__.py",
+]
+
+[tool.coverage.paths]
+autohell = ["src/autohell", "*/autohell/src/autohell"]
+tests = ["tests", "*/autohell/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
