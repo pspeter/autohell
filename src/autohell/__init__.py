@@ -23,7 +23,7 @@ YESTERDAY = TODAY - timedelta(days=1)
 DAY_START = datetime.combine(TODAY, time(8, 30)).astimezone()
 FADE_PERIOD = Period(
     datetime.combine(TODAY, time(19, 00)).astimezone(),
-    datetime.combine(TODAY, time(21, 00)).astimezone(),
+    datetime.combine(TODAY, time(21, 30)).astimezone(),
 )
 FADE_DELTA = FADE_PERIOD.end - FADE_PERIOD.start
 MIN_BRIGHTNESS = 5

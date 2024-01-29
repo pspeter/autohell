@@ -7,8 +7,8 @@
 
 `autohell` controls your monitor's brightness ("hell" means bright in German) automatically.
 For now, it keeps your monitor at 60% brightness during the day, and then slowly dims your
-monitor starting at 7 PM and ends at 5% brightness at 9 PM. Why these values? Because I like them.
-Yes, these values are currently not configurable. PR's welcome :)
+monitor starting at 7 PM and ends at 5% brightness at 9:30 PM. Why these values? Because I like
+them. These values are currently not configurable. PR's welcome :)
 
 If you change your monitors brightness at any time through any other means, autohell will stop
 doing anything for 3 hours (or until you restart it).
