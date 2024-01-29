@@ -20,10 +20,10 @@ def now_tz_aware() -> datetime:
 
 TODAY = now_tz_aware().date()
 YESTERDAY = TODAY - timedelta(days=1)
-DAY_START = datetime.combine(TODAY, time(8, 30, tzinfo=UTC))
+DAY_START = datetime.combine(TODAY, time(8, 30)).astimezone()
 FADE_PERIOD = Period(
-    datetime.combine(TODAY, time(19, 00, tzinfo=UTC)),
-    datetime.combine(TODAY, time(21, 00, tzinfo=UTC)),
+    datetime.combine(TODAY, time(19, 00)).astimezone(),
+    datetime.combine(TODAY, time(21, 00)).astimezone(),
 )
 FADE_DELTA = FADE_PERIOD.end - FADE_PERIOD.start
 MIN_BRIGHTNESS = 5
@@ -66,14 +66,14 @@ def adapt_brightness(current_time):
     sbc.set_brightness(target)
 
 
-def main(args: Sequence[str] | None = None) -> None:  # noqa: ARG001
+def main(args: Sequence[str] | None = None) -> None:
     args = args if args else sys.argv[1:]
     if args and ("-V" in args or "--version" in args):
         print(f"autohell {__version__}")
-        exit(0)
+        sys.exit(0)
     elif args:
-        print(f"autohell currently does not take any arguments")
-        exit(1)
+        print("autohell currently does not take any arguments")
+        sys.exit(1)
 
     current_brightness = sbc.get_brightness()
     print("Current brightness:", current_brightness)
